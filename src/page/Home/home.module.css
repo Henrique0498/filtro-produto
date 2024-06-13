@@ -1,0 +1,21 @@
+.filtro {
+  padding: 1rem auto;
+  margin: 0 0 2rem;
+}
+
+.filtro form {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 540px) {
+  .filtro form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .filtro form {
+    grid-template-columns: repeat(3, 180px) 1fr;
+  }
+}
