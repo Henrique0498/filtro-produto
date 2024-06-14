@@ -1,6 +1,6 @@
-# Teste da Empresa Amaro Contact Center
+# filtro-produto
 
-Este é um projeto desenvolvido como parte do processo de seleção da Empresa Amaro Contact Center. O objetivo era criar uma aplicação web utilizando React, fiz o uso de um template Vite para agilizar o processo de configuração.
+Este é um projeto desenvolvido com uma abordagem onde a filtragem de dados ocorre no lado do cliente, em vez de depender exclusivamente do processamento no servidor. Foi criado uma aplicação de filtro onde ocorre apenas 1 renderização e em real time, assim, evitando também o travamentos no lado do cliente.
 
 ## Tecnologias Utilizadas
 
@@ -15,7 +15,7 @@ Antes de iniciar, certifique-se de ter o Node.js instalado em sua máquina.
 1. Navegue até o diretório do projeto:
 
    ```bash
-   cd teste-amaro
+   cd filtro-produto
    ```
 
 2. Instale as dependências:
@@ -26,10 +26,10 @@ Antes de iniciar, certifique-se de ter o Node.js instalado em sua máquina.
 
 3. Inicie a aplicação:
    ```bash
-   npm start
+   npm dev
    ```
 
-Isso iniciará a aplicação em modo de desenvolvimento. Você poderá acessá-la no navegador em [http://localhost:3000](http://localhost:3000).
+Isso iniciará a aplicação em modo de desenvolvimento. Você poderá acessá-la no navegador em [http://localhost:5173](http://localhost:5173).
 
 ## Funcionalidades Implementadas
 
@@ -38,15 +38,15 @@ Isso iniciará a aplicação em modo de desenvolvimento. Você poderá acessá-l
 - [x] Página abre um modal com detalhes de cada produto.
 - [x] Página tem responsividade e o modal também.
 - [x] Funcionalidade de filtrar.
+- [x] Infinity scroll.
 
 ## Estrutura do Projeto
 
 A estrutura do projeto segue os padrões comuns de uma aplicação React criada com o Vite template. Aqui está uma visão geral da estrutura de diretórios:
 
 ```
-teste-amaro/
+filtro-produto/
 ├── public/
-│   ├── image/
 │   └── ...
 ├── src/
 │   ├── components/
@@ -59,8 +59,7 @@ teste-amaro/
 │   │   │      ├──index.tsx
 │   │   │      └── styles.module.css
 │   │   └── ...
-│   ├── App.js
-│   └── index.js
+│   └── App.tsx
 ├── .gitignore
 ├── package.json
 └── README.md

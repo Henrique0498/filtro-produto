@@ -1,4 +1,10 @@
-import { useLayoutEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { GetAllProducts } from "../../helper/apiTypes";
 import { useFetch } from "../../hooks/useFetch";
@@ -19,22 +25,65 @@ export default function Home() {
   });
   const products = filter(filters, response?.products);
   const [group, setGroup] = useState<TypeSelectOption[]>([]);
+  const [page, setPage] = useState(1);
+  const fetching = useRef(false);
+  const [final, setFinal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useLayoutEffect(() => {
     async function getProducts() {
-      const { url, options } = GET_ALL_PRODUCTS();
+      const limit = page * 30;
+      const { url, options } = GET_ALL_PRODUCTS({ limit });
       const { json } = await request(url, options);
+
+      if (json?.total) {
+        setFinal(limit >= json?.total);
+      }
 
       setGroup(mountGroup(json?.products));
     }
 
     getProducts();
-  }, [request]);
+  }, [request, page]);
+
+  const infiniteScroll = useCallback(() => {
+    if (
+      window.scrollY + window.innerHeight >=
+      document.documentElement.scrollHeight
+    ) {
+      if (fetching.current) {
+        return;
+      }
+
+      fetching.current = true;
+      setLoading(true);
+
+      setTimeout(() => {
+        setPage((currentPage) => currentPage + 1);
+        fetching.current = false;
+        setLoading(false);
+      }, 3000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!final) {
+      window.addEventListener("scroll", infiniteScroll);
+      window.addEventListener("wheel", infiniteScroll);
+    } else {
+      window.removeEventListener("scroll", infiniteScroll);
+      window.removeEventListener("wheel", infiniteScroll);
+    }
+    return () => {
+      window.removeEventListener("scroll", infiniteScroll);
+      window.removeEventListener("wheel", infiniteScroll);
+    };
+  }, [final, infiniteScroll]);
 
   return (
     <section className="container mainContainer">
       <Filter filters={filters} setFilters={setFilters} group={group} />
-      <Products products={products} />
+      <Products products={products} final={final} loading={loading} />
     </section>
   );
 }

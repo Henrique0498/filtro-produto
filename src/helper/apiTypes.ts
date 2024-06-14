@@ -1,5 +1,6 @@
 export type GetAllProducts = {
   products: Product[];
+  total: number;
 };
 
 export type Product = {

@@ -3,7 +3,7 @@ import styles from "./footer.module.css";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>Amaro. Alguns direitos reservados.</p>
+      <p>Alguns direitos reservados.</p>
     </footer>
   );
 };

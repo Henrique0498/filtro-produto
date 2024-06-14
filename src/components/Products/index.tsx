@@ -6,9 +6,11 @@ import styles from "./products.module.css";
 
 interface InProducts {
   products: Product[];
+  loading: boolean;
+  final: boolean;
 }
 
-export function Products({ products }: InProducts) {
+export function Products({ products, final, loading }: InProducts) {
   return (
     <div>
       <ProductsModal />
@@ -24,6 +26,15 @@ export function Products({ products }: InProducts) {
             </li>
           ))}
         </ul>
+      )}
+      {loading && !final && (
+        <p style={{ padding: "5rem 0", textAlign: "center" }}>Carregando...</p>
+      )}
+
+      {final && (
+        <p style={{ padding: "5rem 0", textAlign: "center" }}>
+          Você chegou no final
+        </p>
       )}
     </div>
   );

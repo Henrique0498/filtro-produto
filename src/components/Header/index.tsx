@@ -5,9 +5,11 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>
         <a href="/" aria-label="Amaro - Home">
-          <svg width="100" height="70">
-            <image href="image/logo_semfundo.webp" width="100" height="70" />
-          </svg>
+          <img
+            src="https://raw.githubusercontent.com/Henrique0498/Henrique0498/e297ec588fdbf835ce51e5ef7035bde86ee3b480/img/Logo.svg"
+            alt="Logo"
+            style={{ height: "40px" }}
+          />
         </a>
 
         <a className={styles.login} href="/login">
