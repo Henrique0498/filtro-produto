@@ -12,13 +12,19 @@ export function Products({ products }: InProducts) {
   return (
     <div>
       <ProductsModal />
-      <ul className={styles.container}>
-        {products.map((product) => (
-          <li key={product.id}>
-            <ProductsItem product={product} />
-          </li>
-        ))}
-      </ul>
+      {!products[0] ? (
+        <p style={{ padding: "5rem 0", textAlign: "center" }}>
+          Nenhum dado encontrado
+        </p>
+      ) : (
+        <ul className={styles.container}>
+          {products.map((product) => (
+            <li key={product.id}>
+              <ProductsItem product={product} />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
